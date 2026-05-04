@@ -1,0 +1,54 @@
+@startuml
+
+entity Student {
+  *Username
+  --
+  Credits
+  Saved_Location
+  Password
+}
+
+entity Cook
+entity Consumer
+
+entity Advertisement {
+  *Cook_name
+  --
+  Init_quantity
+  State_of_ad
+  Delivery_time
+  Delivery_location
+  Allergies
+  Post_date
+  Food
+  Description
+}
+
+entity Request {
+  *Req_id
+  --
+  Consumer_id
+  Chef_id
+  Success
+}
+
+entity Rating {
+  *Ad_id
+  --
+  Description
+}
+
+entity Admin {
+  *Username
+  --
+  Password
+}
+
+Student <|-- Cook
+Student <|-- Consumer
+Advertisement <|.. Cook : CRUD
+Request <|.. Consumer : Requests
+
+
+
+@enduml
