@@ -1,4 +1,4 @@
-@startuml
+@startuml name 
 
 entity Student {
   *Username
@@ -46,9 +46,13 @@ entity Admin {
 
 Student <|-- Cook
 Student <|-- Consumer
-Advertisement <|.. Cook : CRUD
-Request <|.. Consumer : Requests
-
-
+Advertisement <- Cook : CRUD
+Request <- Consumer : Requests
+Cook -> Request : Concludes
+Request -> Consumer : Penalty
+Consumer -> Advertisement : Browses
+Rating *-- Request
+Consumer -> Rating : Writes
+Advertisement -> Request : Allocates
 
 @enduml
