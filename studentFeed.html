@@ -11,7 +11,7 @@
 
   <!-- 🔝 TOP NAVBAR -->
    <div id="top-bar"></div>
-   <script src="top-bar-loader.js"></script>
+   <script src="js/top-bar-loader.js"></script>
   <!-- 📱 MAIN LAYOUT -->
   <main class="app-layout">
 
@@ -40,42 +40,15 @@
     <!-- 🍝 FEED CONTENT -->
     <section class="feed">
 
-      <div class="feed-header">
-        <h2>Available Meals</h2>
-      </div>
+  <div class="feed-header">
+    <h2>Available Meals</h2>
+  </div>
 
-      <!-- POSTS CONTAINER (JS FILLS THIS) -->
-      <div id="postsContainer" class="posts-grid">
+  <div id="postsContainer"></div>
 
-        <!-- Example Card (JS will generate these) -->
-        <div class="post-card">
-          <div class="post-header">
-            <h3>Spaghetti Bolognese</h3>
-            <span class="status available">Available</span>
-          </div>
+  <script type="module" src="js/pages/feed.js"></script>
 
-          <p class="description">
-            Homemade pasta with rich tomato sauce 🍝
-          </p>
-
-          <div class="post-info">
-            <span>🍽 3 portions</span>
-            <span>📍 Dorm A</span>
-            <span>⏰ 18:00</span>
-          </div>
-
-          <div class="allergens">
-            <span>Gluten</span>
-          </div>
-
-          <div class="post-actions">
-            <button class="request-btn">Request</button>
-          </div>
-        </div>
-
-      </div>
-
-    </section>
+</section>
 
   </main>
 
