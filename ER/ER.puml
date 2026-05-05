@@ -1,58 +1,62 @@
 @startuml name 
 
-entity Student {
-  *Username
+entity Student{
+  *user_id : string
   --
-  Credits
-  Saved_Location
-  Password
+  password : string
+  saved_location : string
+  points : int
+  food_distributed : int
 }
 
-entity Cook
-entity Consumer
-
-entity Advertisement {
-  *Cook_name
+entity Admin{
+  *admin_id : string
   --
-  Init_quantity
-  State_of_ad
-  Delivery_time
-  Delivery_location
-  Allergies
-  Post_date
-  Food
-  Description
+  password : string
 }
 
-entity Request {
-  *Req_id
-  --
-  Consumer_id
-  Chef_id
-  Success
+entity Stats{
+  food_distributed : int
+
 }
 
-entity Rating {
-  *Ad_id
+entity Advertisment{
+  *ad_id : int 
   --
-  Description
+  cook_id : int 
+  consumer_id : int
+  food : string 
+  photo : media
+  allergies : List<string>
+  description : text
+  quantity : int 
+  delivery_location : string 
+  delivery_time : date
+  date_of_creation : date
+  state_of_ad : enum{ACTIVE, INACTIVE, DELETED}
 }
 
-entity Admin {
-  *Username
+entity Request{
+  *req_id
   --
-  Password
+  success : bool
 }
 
-Student <|-- Cook
-Student <|-- Consumer
-Advertisement <- Cook : CRUD
-Request <- Consumer : Requests
-Cook -> Request : Concludes
-Request -> Consumer : Penalty
-Consumer -> Advertisement : Browses
-Rating *-- Request
-Consumer -> Rating : Writes
-Advertisement -> Request : Allocates
+entity Rating{
+  *rate_id : int 
+  --
+  description : text
+  stars : int
+}
 
+Student "2...*" --> "1" Advertisment : Involves
+
+Advertisment --* Rating
+Rating --> Student : Penalty
+Student --* Request
+Request --> Advertisment : Allocates
+Stats *-- Advertisment
+Admin "1" --> Stats : Views
+Admin "1" --> "*" Student : Sorts Leaderboard
+Student "1" --> "*" Request : Concludes
 @enduml
